@@ -1,0 +1,31 @@
+const music = require("../db/models/music");
+
+
+
+const catchAsync = require("../utils/catchAsync");
+
+const createMusic = catchAsync(async (req, res, next) => {
+  const body = req.body;
+
+  const newMusic = await music.create({
+    title: body.title,
+    // isFeatured: body.isFeatured,
+    musicImage: body.musicImage,
+    genre: body.genre,
+    artist: body.artist,
+    category: body.category,
+    // year: body.year,
+    // album: body.album,
+    // duration: body.duration,
+    musicUrl: body.musicUrl,
+  });
+
+  return res.status(201).json({
+    status: "success",
+    data: newMusic
+  });
+});
+
+module.exports = {
+  createMusic
+};
