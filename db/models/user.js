@@ -7,10 +7,11 @@ const {
 const bcrypt = require('bcrypt');
 const sequelize = require('../../config/database');
 const AppError = require('../../utils/appError');
+const music = require('./music');
 
 
 
-module.exports = sequelize.define('user', {
+const user = sequelize.define('user', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -113,3 +114,12 @@ module.exports = sequelize.define('user', {
       freezeTableName: true,
       modelName: 'user',
     });
+
+
+user.hasMany(music, {
+  foreignKey: 'id'});
+  music.belongsTo(user,{
+    foreignKey: 'id'
+  });
+
+module.exports = user;

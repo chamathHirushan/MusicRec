@@ -1,3 +1,5 @@
+const user = require("../db/models/user");
+
 const music = require("../db/models/music");
 
 
@@ -26,6 +28,28 @@ const createMusic = catchAsync(async (req, res, next) => {
   });
 });
 
+const getAllMusic = catchAsync(async (req, res, next) => {
+  const allMusic = await music.findAll({include: user});
+
+  return res.json({
+    status: "success",
+    data: allMusic
+  });
+});
+
+const getMusicbyId = catchAsync(async (req, res, next) => {
+  const musicId = req.params.id;
+  const allMusic = await music.findByPk({include: user});
+  if (!allMusic) {
+    return next(new AppError("Invalid music ID", 400));
+  }
+
+  return res.json({
+    status: "success",
+    data: allMusic
+  });
+});
+
 module.exports = {
-  createMusic
+  createMusic, getAllMusic, getMusicbyId
 };
