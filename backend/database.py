@@ -1,8 +1,10 @@
 from sqlalchemy.orm import declarative_base, sessionmaker
+import os
 
 from sqlalchemy import create_engine
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine("postgresql+psycopg2://postgres:20Han!01@localhost/musichub_db", echo=True)
+engine = create_engine(DATABASE_URL, echo=True)
 
 Base = declarative_base()
 

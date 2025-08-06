@@ -1,0 +1,29 @@
+# Web framework and ASGI server
+fastapi
+uvicorn[standard]
+
+# LangChain core and modules
+langchain
+langchain-google-genai
+langchain-community
+
+# FAISS for vector storage
+faiss-cpu
+
+# Google Generative AI SDK
+google-generativeai
+
+# SQLAlchemy ORM
+sqlalchemy
+
+# .env handling
+python-dotenv
+
+# Password hashing
+passlib[bcrypt]
+
+# Data science stack
+pandas
+numpy
+scipy
+scikit-learn
